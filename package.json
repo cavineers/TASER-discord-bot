@@ -1,0 +1,45 @@
+{
+    "name": "taser-discord-bot",
+    "version": "1.0.0",
+    "description": "The Application System of Engineering Robots discord bot",
+    "main": "/server/JS/discord.js",
+    "scripts": {
+        "dev": "concurrently -n 'tsc-server,tsc-cmds,server' -c 'white.dim,white.dim,bold' 'cd server && tsc -w' 'cd commands && tsc -w' 'cd server && cd JS && nodemon discord.js'",
+        "tsc-checkCommands": "cd commands && tsc",
+        "tsc-checkServer": "cd server && tsc"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cavineers/TASER-discord-bot.git"
+    },
+    "author": "Ryan Bode",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/cavineers/TASER-discord-bot/issues"
+    },
+    "homepage": "https://github.com/cavineers/TASER-discord-bot#readme",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "discord.js": "^12.5.3",
+        "dotenv": "^10.0.0",
+        "ejs": "^3.1.6",
+        "express": "^4.17.1",
+        "firebase-admin": "^9.9.0"
+    },
+    "devDependencies": {
+        "@types/jquery": "^3.5.5",
+        "@types/node": "^15.6.1",
+        "@typescript-eslint/eslint-plugin": "^4.26.0",
+        "@typescript-eslint/parser": "^4.26.0",
+        "concurrently": "^6.2.0",
+        "eslint": "^7.27.0",
+        "eslint-config-airbnb": "^18.2.1",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-import": "^2.23.4",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-prettier": "^3.4.0",
+        "eslint-plugin-react": "^7.24.0",
+        "typescript": "^4.3.2"
+    }
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>TASER Bot</title>
+</head>
+
+<body onload="getChannels()">
+    <div class="content">
+        <h1>Welcome TASER Devs!</h1>
+        <br><br>
+        <h2>Send Admin Message</h2>
+        <form action="/sendMsg" method="POST">
+            <select name="channel" id="channels" class="box">
+                <option value="">Select Channel to Send Message</option>
+            </select>
+            <br><br>
+            <input class="textBox" name="mainMsg" placeholder="Enter Message Content"></input>
+            <br><br>
+            <input type="text" name="pass" class="textBox" placeholder="Enter Admin Password">
+            <br><br>
+            <input type="submit" style="cursor: pointer;" class="box">
+        </form>
+    </div>
+    <script>
+        let serverData = '<%- data %>';
+        let channelData = serverData.split(',');
+
+        function getChannels() {
+            let select = document.getElementById('channels');
+
+            channelData.forEach(data => {
+                var option = document.createElement('option');
+                option.text = data;
+                option.value = data;
+                select.appendChild(option);
+            });
+        }
+    </script>
+</body>
+
+</html>

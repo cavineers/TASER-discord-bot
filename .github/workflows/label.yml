@@ -1,0 +1,22 @@
+name: "Add Labels to Issues"
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Actions
+        uses: actions/checkout@v2
+        with:
+          repository: "cavineers/4541-actions-bot"
+          ref: main
+          path: ./actions
+      - name: Install Actions
+        run: npm install --production --prefix ./actions
+      - name: Run Action
+        uses: ./actions/auto-add-labels
+        with:
+          parameters: '[ {"keywords": ["fix"], "labels": ["BUG"]}, {"keywords": ["feat"], "labels": ["ENHANCEMENT"]}, {"keywords": ["perf"], "labels": ["OPTIMIZATIONS"]}, {"keywords": ["deps"], "labels": ["DEPENDENCIES"]}, {"keywords": ["test"], "labels": ["TESTING"]}, {"keywords": ["ci"], "labels": ["DEPENDENCIES"]}, {"keywords": ["docs"], "labels": ["DOCUMENTATION"]}]'
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
