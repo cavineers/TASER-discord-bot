@@ -4,5 +4,6 @@
         "removeComments": true,
         "preserveConstEnums": true,
         "module": "commonJS",
+        "outDir": "../commands/JS"
       }
 }
