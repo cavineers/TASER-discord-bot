@@ -4,8 +4,7 @@
     "description": "The Application System of Engineering Robots discord bot",
     "main": "/server/JS/discord.js",
     "scripts": {
-        "dev": "concurrently -n 'tsc-server,tsc-cmds,server' -c 'white.dim,white.dim,bold' 'cd server && tsc -w' 'cd commands && tsc -w' 'cd server && cd JS && nodemon discord.js'",
-        "tsc-checkCommands": "cd commands && tsc",
+        "dev": "concurrently -n 'tsc-server,server' -c 'white.dim,white.dim,bold' 'cd server && tsc -w' 'cd server && cd JS && nodemon discord.js'",
         "tsc-checkServer": "cd server && tsc"
     },
     "repository": {

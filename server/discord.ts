@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable global-require */
+import { Commands } from './commands';
+
 const discord = require('discord.js');
 const admin = require('firebase-admin');
 const express = require('express');
@@ -88,7 +90,7 @@ client.on('message', (receivedMessage) => {
                 receivedMessage.channel.name === 'bot-testing-development')
         ) {
             receivedMessage.delete({ timeout: 1000 });
-            if (receivedMessage.member.roles.cache.find((r) => r.name === 'Scouting')) {
+            if (Commands.getRole(receivedMessage, 'Scouting')) {
                 const args = receivedMessage.content.split(' ');
                 if (args[1] !== '') {
                     receivedMessage.channel.messages
@@ -116,7 +118,7 @@ client.on('message', (receivedMessage) => {
                 receivedMessage.channel.name === 'bot-testing-development')
         ) {
             receivedMessage.delete({ timeout: 1000 });
-            if (receivedMessage.member.roles.cache.find((r) => r.name === 'Scouting')) {
+            if (Commands.getRole(receivedMessage, 'Scouting')) {
                 const args = receivedMessage.content.split(' ');
                 if (args[1] !== '') {
                     receivedMessage.channel.messages
@@ -139,9 +141,7 @@ client.on('message', (receivedMessage) => {
                 receivedMessage.channel.name === 'bot-testing-development')
         ) {
             if (receivedMessage.channel.name === 'taser-bug-reporting') {
-                const role = receivedMessage.guild.roles.cache.find((value) => value.id === '805954504700329995'); // 4541 role id: 805954504700329995 dev role id: 805997664889339955
-                const { member } = receivedMessage;
-                if (role) member.roles.add(role);
+                Commands.addRole(receivedMessage, '805954504700329995'); // 4541 role id: 805954504700329995 dev role id: 805997664889339955
                 receivedMessage.delete({ timeout: 1000 });
                 receivedMessage.author.send(
                     'Hello and welcome to the TASER beta program. You have received this message because you have opted in for TASER beta testing!\n\nThe testing link can be found here https://taser4541-beta.herokuapp.com/login\n\n Please report any bugs, feature requests, or necessary information in the taser-bug-reporting channel. Thank you and happy bug hunting!'
@@ -152,9 +152,7 @@ client.on('message', (receivedMessage) => {
                         msg.delete({ timeout: 5000 });
                     });
             } else {
-                const role = receivedMessage.guild.roles.cache.find((value) => value.id === '805997664889339955'); // 4541 role id: 805954504700329995 dev role id: 805997664889339955
-                const { member } = receivedMessage;
-                if (role) member.roles.add(role);
+                Commands.addRole(receivedMessage, '674650142263214114'); // 4541 role id: 805954504700329995 dev role id: 805997664889339955
                 receivedMessage.author.send(
                     'Hello and welcome to the TASER beta program. You have received this message because you have opted in for TASER beta testing!\n\nThe testing link can be found here https://taser4541-beta.herokuapp.com/login\n\n Please report any bugs, feature requests, or necessary information in the taser-bug-reporting channel. Thank you and happy bug hunting!'
                 );
@@ -171,17 +169,13 @@ client.on('message', (receivedMessage) => {
                 receivedMessage.channel.name === 'bot-testing-development')
         ) {
             if (receivedMessage.channel.name === 'taser-bug-reporting') {
-                const role = receivedMessage.guild.roles.cache.find((value) => value.id === '805954504700329995'); // 4541 role id: 805954504700329995 dev role id: 805997664889339955
-                const { member } = receivedMessage;
-                if (role) member.roles.remove(role);
+                Commands.removeRole(receivedMessage, '805954504700329995');
                 receivedMessage.delete({ timeout: 1000 });
                 receivedMessage.channel.send('You have been opted out of the TASER Testing program :(').then((msg) => {
                     msg.delete({ timeout: 5000 });
                 });
             } else {
-                const role = receivedMessage.guild.roles.cache.find((value) => value.id === '805997664889339955'); // 4541 role id: 805954504700329995 dev role id: 805997664889339955
-                const { member } = receivedMessage;
-                if (role) member.roles.remove(role);
+                Commands.removeRole(receivedMessage, '674650142263214114');
                 receivedMessage.delete({ timeout: 1000 });
                 receivedMessage.channel.send('You have been opted out of the TASER Testing program :(').then((msg) => {
                     msg.delete({ timeout: 5000 });
@@ -207,7 +201,7 @@ client.on('message', (receivedMessage) => {
                 receivedMessage.channel.name === 'bot-testing-development')
         ) {
             receivedMessage.delete({ timeout: 1000 });
-            if (receivedMessage.member.roles.cache.find((r) => r.name === 'Scouting')) {
+            if (Commands.getRole(receivedMessage, 'Scouting')) {
                 const newVersion = receivedMessage.content.substring(15);
                 if (newVersion !== '') {
                     db.collection('Boards')
@@ -309,4 +303,4 @@ setTimeout(() => {
         }
     });
     app.listen(PORT);
-}, 2500);
+}, 3000);

@@ -17,13 +17,13 @@ All contributions / updates, like in the main TASER repository, should follow al
 
 ## Environmental Variables Setup
 
-This project utilizes environmental variables in order to change the applications functionality. All environmental variables must be setup in order to run this application.
+This project utilizes environmental variables in order to change the applications functionality. All environmental variables must be setup in order to run this application. All variables need to be in a `.env` file located in the `/server/JS` directory.
 
 This environmental variables that need to be setup include: FIREBASE_KEY and TOKEN.
 
 The TOKEN is the discord bot API token while the FIREBASE_KEY is the firebase admin key used to access the TASER database.
 
-**If you wish to contribute to this repository please contact the 4541 cavineers head of controls to get access to the correct environmental variables, otherwise any discord token and db will work for smaller testing and development.**
+**If you wish to contribute to this repository please contact the 4541 Cavineers head of controls to get access to the correct environmental variables, otherwise any discord token and db will work for smaller testing and development.**
 
 ## Cloning and Starting Compilers
 
