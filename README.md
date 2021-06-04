@@ -13,7 +13,7 @@ All contributions / updates, like in the main TASER repository, should follow al
 
 ****
 
-# Getting Started
+# Getting Started on Your Machine
 
 ## Environmental Variables Setup
 
@@ -27,6 +27,6 @@ The TOKEN is the discord bot API token while the FIREBASE_KEY is the firebase ad
 
 ## Cloning and Starting Compilers
 
-After reading all the guidelines of this repository, simply run `npm run dev` after cloning the repository to start up both the service and the compiler. The web app GUI starts on port `8000`.
+After reading all the guidelines of this repository, simply run `yarn run dev` after cloning the repository to start up both the service and the compiler. The web app GUI starts on port `8000`.
 
 Once again, all updates must be made to the TypeScript files.

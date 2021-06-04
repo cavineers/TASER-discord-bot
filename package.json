@@ -7,10 +7,7 @@
         "dev": "concurrently -n 'tsc-server,server' -c 'white.dim,white.dim,bold' 'cd server && tsc -w' 'cd server && cd JS && nodemon discord.js'",
         "tsc-checkServer": "cd server && tsc"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/cavineers/TASER-discord-bot.git"
-    },
+    "repository": "git+https://github.com/cavineers/TASER-discord-bot.git",
     "author": "Ryan Bode",
     "license": "Apache-2.0",
     "bugs": {
