@@ -15,7 +15,6 @@ export class Commands {
 
     /**
      * Gets the role in a server based on the name
-     * @param receivedMessage The message that was sent
      * @param name The name of the role
      * @returns boolean value if the user has that given role
      */
@@ -25,24 +24,44 @@ export class Commands {
 
     /**
      * Adds a role to a user.
-     * @param receivedMessage The message that was sent
-     * @param roleId The ID of the role being added
+     * @param roleName The name of the role being added
      */
-    public addRole(roleId: string) {
-        const role = this.receivedMessage.guild.roles.cache.find((value) => value.id === roleId);
+    public addRole(roleName: string) {
+        const role = this.receivedMessage.guild.roles.cache.find((value) => value.name === roleName);
         const { member } = this.receivedMessage;
-        if (role) member.roles.add(role);
+        if (role) {
+            member.roles.add(role);
+            this.receivedMessage.channel
+                .send(`Thanks! I have added the ${roleName} role to your account`)
+                .then((msg) => {
+                    msg.delete({ timeout: 5000 });
+                });
+        } else {
+            this.receivedMessage.channel.send(`Could not find the request role: ${roleName}`).then((msg) => {
+                msg.delete({ timeout: 5000 });
+            });
+        }
     }
 
     /**
      * Removed a role from a user.
-     * @param receivedMessage The message that was sent
-     * @param roleId The ID of the role being removed
+     * @param roleName The name of the role being removed
      */
-    public removeRole(roleId: string) {
-        const role = this.receivedMessage.guild.roles.cache.find((value) => value.id === roleId);
+    public removeRole(roleName: string) {
+        const role = this.receivedMessage.guild.roles.cache.find((value) => value.name === roleName);
         const { member } = this.receivedMessage;
-        if (role) member.roles.remove(role);
+        if (role) {
+            member.roles.remove(role);
+            this.receivedMessage.channel
+                .send(`Thanks! I have removed the ${roleName} role from your account`)
+                .then((msg) => {
+                    msg.delete({ timeout: 5000 });
+                });
+        } else {
+            this.receivedMessage.channel.send(`Could not find the request role: ${roleName}`).then((msg) => {
+                msg.delete({ timeout: 5000 });
+            });
+        }
     }
 
     /* ----------------------------- Error Handling ---------------------------- */

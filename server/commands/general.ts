@@ -37,6 +37,18 @@ export class GeneralCmds {
                 this.receivedMessage.delete({ timeout: 1000 });
                 this.getVersion();
                 break;
+            case '!addrole':
+                this.receivedMessage.delete({ timeout: 1000 });
+                this.commands.addRole(
+                    this.receivedMessage.content.substring(this.receivedMessage.content.indexOf(' ') + 1)
+                );
+                break;
+            case '!removerole':
+                this.receivedMessage.delete({ timeout: 1000 });
+                this.commands.removeRole(
+                    this.receivedMessage.content.substring(this.receivedMessage.content.indexOf(' ') + 1)
+                );
+                break;
             default:
                 Commands.generalError = true;
                 this.commands.invalidCmd();
